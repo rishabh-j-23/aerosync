@@ -6,7 +6,10 @@ load_dotenv()
 PROFILE = os.getenv("PROFILE", "prod")
 
 # Base app directory (expand ~ to full path)
+APP_NAME = "AeroSync"
 APP_PATH = os.path.expanduser("~/.aerosync")
+
+TEMP_BACKUP_DIR = os.path.expanduser("~/.aerosync/temp/backups")
 
 # Google Drive
 GDRIVE_TOKEN_FILE = "aerosync_gdrive_token.pickle"

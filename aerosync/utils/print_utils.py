@@ -1,31 +1,7 @@
-import logging
-from typing import List, Sequence
+from typing import Sequence
 
 import click
-from pydantic import BaseModel
 from tabulate import tabulate
-
-
-def print_table(entries: list):
-    logging.info(f"entries={entries}")
-    if not entries:
-        click.echo("No records found.")
-        return
-
-    # If entries are Pydantic models or ORM objects, convert to dict
-    if isinstance(entries[0], BaseModel):
-        data = [entry.dict() for entry in entries]
-    else:
-        data = [entry.__dict__ for entry in entries]
-
-    # Extract headers from keys
-    headers = data[0].keys()
-
-    # Extract rows
-    rows = [list(item.values()) for item in data]
-
-    # Print table
-    click.echo(tabulate(rows, headers=headers, tablefmt="grid"))
 
 
 def print_sequences(entries: Sequence, headers=None):

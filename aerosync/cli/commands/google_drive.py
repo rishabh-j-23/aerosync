@@ -21,4 +21,11 @@ def login():
         client_id=client_id, client_secret=client_secret, email=email
     )
     if google_provider.creds is not None and google_provider.creds.valid:
-        print(f"Logged in successfully using '{email}'")
+        google_provider.create_folder()
+        click.echo(f"Logged in successfully using '{email}'")
+
+
+@gdrive.command()
+def init():
+    provider = GoogleDriveProvider()
+    folder_id = provider.create_folder()
